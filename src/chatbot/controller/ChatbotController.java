@@ -8,13 +8,15 @@ public class ChatbotController
 	
 	private Chatbot myBot;
 	private ChatbotView myDisplay;
-	private String userName = "Guest";
+	private String userName;
 	
 	public ChatbotController()
 	{
-		
+	
 		myDisplay = new ChatbotView();
-		myBot = new Chatbot(myDisplay.getResponce("Enter Username:"));
+		userName = myDisplay.getResponce("Enter Username:");
+		myBot = new Chatbot(userName);
+		
 	}
 	
 	public void start()
