@@ -1,6 +1,8 @@
 package chatbot.model;
 
 import java.util.ArrayList;
+import chatbot.model.Chatbot;
+import chatbot.view.ChatbotView;
 
 /**
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part
@@ -14,6 +16,8 @@ public class Chatbot
 	private ArrayList<String> politicalTopicList;
 	private String userName;
 	private String content;
+	private Chatbot myBot;
+	private ChatbotView myDisplay;
 	
 	/**
 	 * Creates an instance of the Chatbot with the supplied username.
@@ -21,6 +25,7 @@ public class Chatbot
 	 */
 	public Chatbot(String userName)
 	{
+		this.userName = userName;
 		
 	}
 	
