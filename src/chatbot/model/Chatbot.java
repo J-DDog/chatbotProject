@@ -42,7 +42,14 @@ public class Chatbot
 	 */
 	public boolean lengthChecker(String currentInput)
 	{
-		return false;
+		boolean hasLength = false;
+		if (currentInput != null && currentInput.length() > 0)
+		{
+			
+			hasLength = true;
+		
+		}
+		return hasLength;
 	}
 	
 	/**
@@ -83,7 +90,7 @@ public class Chatbot
 	 */
 	public String getUserName()
 	{
-		return null;
+		return userName;
 	}
 	
 	/**
@@ -92,7 +99,7 @@ public class Chatbot
 	 */
 	public String getContent()
 	{
-		return null;
+		return content;
 	}
 	
 	/**
@@ -101,7 +108,7 @@ public class Chatbot
 	 */
 	public ArrayList<String> getMemesList()
 	{
-		return null;
+		return memesList;
 	}
 	
 	/**
@@ -110,7 +117,7 @@ public class Chatbot
 	 */
 	public ArrayList<String> getPoliticalTopicList()
 	{
-		return null;
+		return politicalTopicList;
 	}
 	
 	/**
@@ -119,7 +126,7 @@ public class Chatbot
 	 */
 	public void setContent(String content)
 	{
-		
+		this.content = content;
 	}
 }
 
