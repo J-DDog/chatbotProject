@@ -16,8 +16,6 @@ public class Chatbot
 	private ArrayList<String> politicalTopicList;
 	private String userName;
 	private String content;
-	private Chatbot myBot;
-	private ChatbotView myDisplay;
 	
 	/**
 	 * Creates an instance of the Chatbot with the supplied username.
@@ -25,8 +23,10 @@ public class Chatbot
 	 */
 	public Chatbot(String userName)
 	{
+		this.memesList = new ArrayList<String>();
+		this.politicalTopicList = new ArrayList<String>();
 		this.userName = userName;
-		
+		this.content = "Motivational Sign!";
 	}
 	
 	private void buildMemesList()
