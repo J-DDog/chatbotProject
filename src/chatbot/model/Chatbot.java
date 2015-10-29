@@ -39,7 +39,7 @@ public class Chatbot
 	{
 		
 		this.memesList.add("doge");
-		this.memesList.add("\"Aliens\"");
+		this.memesList.add("aliens");
 		this.memesList.add("bad luck brian");
 		this.memesList.add("spoderman");
 		this.memesList.add("cute animals");
@@ -48,7 +48,7 @@ public class Chatbot
 		this.memesList.add("rare pepe");
 		this.memesList.add("what if I told you");
 		this.memesList.add("unhelpful highschool teacher");
-		this.memesList.add("JOHN CENA");
+		this.memesList.add("john cena");
 		
 	}
 	
@@ -118,7 +118,10 @@ public class Chatbot
 	{
 		boolean hasMeme = false;
 		
-		
+		if(memesList.contains(currentInput.toLowerCase()))
+		{
+			hasMeme = true;
+		}
 		
 		return hasMeme;
 	}
