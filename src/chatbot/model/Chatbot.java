@@ -169,17 +169,17 @@ public class Chatbot
 			case 2:
 				if(memeChecker(currentChat))
 				{
-					returnChat = "";
+					returnChat = "100";
 				}
 				break;
 			case 3:
 				if(politicalTopicChecker(currentChat))
 				{
-					returnChat = "";
+					returnChat = "5649";
 				}
 				break;
 			case 4:
-				returnChat = "";
+				returnChat = "UR FUNNY MATE";
 				break;
 			default:
 				returnChat = "The Unvers has collapsed and so that suck lol";

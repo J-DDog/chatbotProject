@@ -28,17 +28,10 @@ public class ChatbotController
 	private void chat()
 	{
 		String conversation = myDisplay.getResponce("What would you like to talk about today?");
+		myBot.contentChecker(conversation);
 		while(myBot.lengthChecker(conversation))
 		{
-			if(myBot.contentChecker(conversation))
-			{
-				myDisplay.displayMessage("Wow I Had no idea you were interested in " + myBot.getContent());
-			}
-			else if(myBot.memeChecker(conversation))
-			{
-				myDisplay.displayMessage("You like memes, Weirdo");
-			}
-			
+			conversation = myBot.processConversation(conversation);
 			conversation = myDisplay.getResponce(conversation);
 		}
 	}
