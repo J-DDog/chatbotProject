@@ -129,6 +129,15 @@ public class Chatbot
 		return hasMeme;
 	}
 	
+	public String prossesConversation(String currentChat)
+	{
+		String returnChat = null;
+		
+		
+		
+		return returnChat;
+	}
+	
 	/**
 	 * Returns the username of this Chatbot instance.
 	 * @return The username of the Chatbot.
