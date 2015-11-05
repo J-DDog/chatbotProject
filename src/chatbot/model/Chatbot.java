@@ -58,7 +58,34 @@ public class Chatbot
 	private void buildPoliticalTopicsList()
 	{
 		
-		this.politicalTopicList.add("");
+		this.politicalTopicList.add("Income Tax");
+		this.politicalTopicList.add("jobs");
+		this.politicalTopicList.add("Women's Rights");
+		this.politicalTopicList.add("Gay Rights");
+		this.politicalTopicList.add("Defense of Marriage Act");
+		this.politicalTopicList.add("Energy");
+		this.politicalTopicList.add("Unemployment Benefits");
+		this.politicalTopicList.add("Police Abuse");
+		this.politicalTopicList.add("Tort Reform");
+		this.politicalTopicList.add("Combat Drones");
+		this.politicalTopicList.add("Hillary Clinton");
+		this.politicalTopicList.add("Martin O'Malley");
+		this.politicalTopicList.add("Bernie Sanders ");
+		this.politicalTopicList.add("Jeb Bush");
+		this.politicalTopicList.add("Ben Carson");
+		this.politicalTopicList.add("Chris Christie");
+		this.politicalTopicList.add("Ted Cruz");
+		this.politicalTopicList.add("Carly Fiorina");
+		this.politicalTopicList.add("Jim Gilmore");
+		this.politicalTopicList.add("Lindsey Graham");
+		this.politicalTopicList.add("Mike Huckabee");
+		this.politicalTopicList.add("Bobby Jindal");
+		this.politicalTopicList.add("john Kasich");
+		this.politicalTopicList.add("George Pataki");
+		this.politicalTopicList.add("Rand Paul");
+		this.politicalTopicList.add("Marco Rubio");
+		this.politicalTopicList.add("Rick Santorum");
+		this.politicalTopicList.add("Donald Trump");
 		
 	}
 	
@@ -115,7 +142,17 @@ public class Chatbot
 	 */
 	public boolean politicalTopicChecker(String currentInput)
 	{
-		return false;
+		boolean hasTopic = false;
+		
+		for (String currentMeme : memesList)
+		{
+			if (currentInput.toLowerCase().contains(currentMeme))
+			{
+				hasTopic = true;
+			}
+		}
+		
+		return hasTopic;
 	}
 	
 	/**
@@ -147,8 +184,9 @@ public class Chatbot
 	 */
 	public String processConversation(String currentChat)
 	{
+		boolean hasRelivance = false;
 		String returnChat = "";
-		int randomTopic = (int) (Math.random() * 5); //Generates a random number between 0 and 4.
+		int randomTopic = 1; //(int) (Math.random() * 5); //Generates a random number between 0 and 4.
 		
 		switch (randomTopic)
 		{
@@ -157,6 +195,12 @@ public class Chatbot
 				{
 					returnChat = "That is a very popular meme this year. What else are you"
 							+ " wanting to talk about?"; 
+					hasRelivance = true;
+				}
+				else if(politicalTopicChecker(currentChat))
+				{
+					returnChat = "WOW You have intrest in politics. Me TOO!!";
+					hasRelivance = true;
 				}
 				break;
 			case 1:
@@ -164,12 +208,19 @@ public class Chatbot
 				{
 					returnChat = "Wow up to date are we. Well what other things are you"
 							+ " intrested in?";
+					hasRelivance = true;
+				}
+				else if(memeChecker(currentChat))
+				{
+					returnChat = "HUH";
+					hasRelivance = true;
 				}
 				break;
 			case 2:
 				if(memeChecker(currentChat))
 				{
 					returnChat = "100";
+					hasRelivance = true;
 				}
 				break;
 			case 3:
