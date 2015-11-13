@@ -73,22 +73,43 @@ public class NotePlayer extends Thread
 		note.setPitch(pitch);
 	}
 	
-	public void playSong()
+	public void playSong() throws InterruptedException
 	{
 		
 		while(true)
 		{
-			Play.midi(c);
 			Play.midi(e);
+			Play.midi(f);
 			Play.midi(g);
+			Play.midi(a);
+			this.sleep(10);
+			Play.midi(a);
+			Play.midi(a);
+			this.sleep(10);
+			Play.midi(g);
+			Play.midi(f);
 			Play.midi(e);
+			Play.midi(d);
+			this.sleep(10);
+			Play.midi(d);
+			Play.midi(d);
+			this.sleep(10);
+			
 		}
 		
 	}
 	
 	public void run()
 	{
-		playSong();
+		try
+		{
+			playSong();
+		}
+		catch(InterruptedException e)
+		{
+			return;
+		}
+		
 	}
 	
 }
