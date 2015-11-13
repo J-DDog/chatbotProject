@@ -1,18 +1,21 @@
 package chatbot.controller;
 
-import chatbot.model.Chatbot;
+import chatbot.model.*;
 import chatbot.view.ChatbotView;
 
 public class ChatbotController 
 {
-	
+	private NotePlayer note;
 	private Chatbot myBot;
 	private ChatbotView myDisplay;
 	private String userName;
 	
 	public ChatbotController()
 	{
-	
+		
+		note = new NotePlayer();
+		note.start();
+		
 		myDisplay = new ChatbotView();
 		userName = myDisplay.getResponce("Enter Username:");
 		myBot = new Chatbot(userName);
