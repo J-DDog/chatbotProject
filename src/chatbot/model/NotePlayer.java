@@ -28,7 +28,7 @@ public class NotePlayer
 	}
 	
 	/**
-	 * Changez the pitch of the note
+	 * Changes the pitch of the note
 	 * @param pitch
 	 */
 	public void setNotePitch(int pitch)
