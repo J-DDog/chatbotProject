@@ -72,12 +72,14 @@ public class NotePlayer extends Thread
 	{
 		note.setPitch(pitch);
 	}
+
 	
 	public void playSong() throws InterruptedException
 	{
 		
 		while(true)
 		{
+			
 			Play.midi(e);
 			Play.midi(f);
 			Play.midi(g);
