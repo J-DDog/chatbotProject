@@ -1,22 +1,22 @@
-package chat.tests;
+package chatbot.tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import chat.controller.ChatController;
-import chat.view.*;;
+import chatbot.controller.ChatbotController;
+import chatbot.view.*;;
 
 
 public class ChatControllerTest
 {
-	private ChatController testController;
+	private ChatbotController testController;
 
 	@Before
 	public void setUp() throws Exception
 	{
-		testController = new ChatController();
+		testController = new ChatbotController();
 	}
 
 	@After
@@ -28,7 +28,7 @@ public class ChatControllerTest
 	@Test
 	public void testChatController()
 	{
-		assertNotNull("Data member not initialized", testController.getChatbot());
+		assertNotNull("Data member not initialized", testController.getMyBot());
 		assertNotNull("Data member not initialized", testController.getChatView());
 		assertTrue("Wrong display type", (testController.getChatView() instanceof ChatView));
 		assertTrue("Wrong Frame type",(testController.getBaseFrame() instanceof ChatFrame));
