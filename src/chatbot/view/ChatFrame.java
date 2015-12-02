@@ -21,13 +21,13 @@ public class ChatFrame extends JFrame
 	private void setupFrame()
 	{
 		this.setContentPane(basePanel);
-		this.setSize(600, 600);
+		this.setSize(600, 530);
 		this.setTitle("ChatBot");
 		this.setResizable(false);
 		this.setVisible(true);
 	}
 	
-	public ChatbotController getMainController()
+	public ChatbotController getBaseController()
 	{
 		return baseController;
 	}

@@ -53,7 +53,7 @@ public class NotePlayer extends Thread
 		gs.setPitch(JMC.GS3);
 		as.setPitch(JMC.AS3);
 		
-		setNoteSpeed(100);
+		setNoteSpeed(1000);
 		
 	}
 	

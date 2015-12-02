@@ -1,8 +1,9 @@
 package chatbot.model;
 
 import java.util.ArrayList;
+
 import chatbot.model.Chatbot;
-import chatbot.view.ChatbotView;
+import chatbot.view.ChatView;
 
 /**
  * Base version of the 2015 Chatbot class. Only stub methods are provided.
@@ -144,9 +145,9 @@ public class Chatbot
 	{
 		boolean hasTopic = false;
 		
-		for (String currentMeme : memesList)
+		for (String currentTopic : politicalTopicList)
 		{
-			if (currentInput.toLowerCase().contains(currentMeme))
+			if (currentInput.toLowerCase().contains(currentTopic))
 			{
 				hasTopic = true;
 			}
@@ -184,9 +185,8 @@ public class Chatbot
 	 */
 	public String processConversation(String currentChat)
 	{
-		boolean hasRelivance = false;
 		String returnChat = "";
-		int randomTopic = 1; //(int) (Math.random() * 5); //Generates a random number between 0 and 4.
+		int randomTopic = (int) (Math.random() * 5); //Generates a random number between 0 and 4.
 		
 		switch (randomTopic)
 		{
@@ -195,12 +195,14 @@ public class Chatbot
 				{
 					returnChat = "That is a very popular meme this year. What else are you"
 							+ " wanting to talk about?"; 
-					hasRelivance = true;
 				}
 				else if(politicalTopicChecker(currentChat))
 				{
 					returnChat = "WOW You have intrest in politics. Me TOO!!";
-					hasRelivance = true;
+				}
+				else
+				{
+					returnChat = "Thats Boring. Give me something interesting to talk about.";
 				}
 				break;
 			case 1:
@@ -208,32 +210,49 @@ public class Chatbot
 				{
 					returnChat = "Wow up to date are we. Well what other things are you"
 							+ " intrested in?";
-					hasRelivance = true;
 				}
 				else if(memeChecker(currentChat))
 				{
-					returnChat = "HUH";
-					hasRelivance = true;
+					returnChat = "MemeTASTIC HAhaHahaHahaHahaHahahahaa...";
+				}
+				else
+				{
+					returnChat = "BOOOOOOOOO!!!";
 				}
 				break;
 			case 2:
 				if(memeChecker(currentChat))
 				{
-					returnChat = "100";
-					hasRelivance = true;
+					returnChat = "Tasty memes, Give me another.";
+				}
+				else if(politicalTopicChecker(currentChat))
+				{
+					returnChat = "Tasty Politics Topic, Give me another.";
+				}
+				else
+				{
+					returnChat = "Tasty NOTHIG, Give me SOMETHING TO WORK WITH!";
 				}
 				break;
 			case 3:
 				if(politicalTopicChecker(currentChat))
 				{
-					returnChat = "5649";
+					returnChat = "I HATE POLITICS!!!";
+				}
+				else if(memeChecker(currentChat))
+				{
+					returnChat = "I Thats Not a POLITICAL TOPIC!!!";
+				}
+				else
+				{
+					returnChat = "K";
 				}
 				break;
 			case 4:
 				returnChat = "UR FUNNY MATE";
 				break;
 			default:
-				returnChat = "The Unvers has collapsed and so that suck lol";
+				returnChat = "The Univers has collapsed. That sucks, lol.";
 				break;
 		}
 		return returnChat;
@@ -288,5 +307,26 @@ public class Chatbot
 	public void setContent(String content)
 	{
 		this.content = content;
+	}
+
+	public boolean keyboardMashChecker(String string)
+	{
+		boolean isMash = false;
+		
+		
+		
+		return isMash;
+	}
+
+	public boolean quitChecker(String string)
+	{
+		boolean isQuit = false;
+		
+		if(string.equals("exit"))
+		{
+			isQuit = true;
+		}
+		
+		return isQuit;
 	}
 }

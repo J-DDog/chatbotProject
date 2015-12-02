@@ -8,13 +8,13 @@ import javax.swing.ImageIcon;
  * @author jker3169
  *@version 1.3 11/5/15 Added Icons to popup windows!
  */
-public class ChatbotView 
+public class ChatView 
 {
 	
 	private String windMessage;
 	private ImageIcon chatIcon;
 	
-	public ChatbotView()
+	public ChatView()
 	{
 		windMessage = "Hello from your friendly chatbot :D";
 		chatIcon = new ImageIcon(getClass().getResource("images/AppIcon.png"));
