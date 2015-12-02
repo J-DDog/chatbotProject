@@ -25,11 +25,11 @@ public class ChatView
 		JOptionPane.showMessageDialog(null, message,windMessage, JOptionPane.PLAIN_MESSAGE, chatIcon);
 	}
 	
-	public String getResponce(String message)
+	public String getResponce(String message, String textDefault)
 	{
 		String output = "";
 		
-		output = JOptionPane.showInputDialog(null, message, windMessage, JOptionPane.PLAIN_MESSAGE, chatIcon, null, "Answer here :)").toString();
+		output = JOptionPane.showInputDialog(null, message, windMessage, JOptionPane.PLAIN_MESSAGE, chatIcon, null, textDefault).toString();
 		
 		return output;
 	}

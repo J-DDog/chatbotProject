@@ -17,11 +17,11 @@ public class ChatbotController
 	public ChatbotController()
 	{
 		
-//		note = new NotePlayer();
-//		note.start();
+		note = new NotePlayer();
+		note.start();
 		
 		chatView = new ChatView();
-		userName = chatView.getResponce("Whats your name?");
+		userName = chatView.getResponce("Whats your name?", "User");
 		
 		myBot = new Chatbot(userName);
 		
@@ -37,12 +37,12 @@ public class ChatbotController
 	
 	private void chat()
 	{
-		String conversation = chatView.getResponce("What would you like to talk about today?");
+		String conversation = chatView.getResponce("What would you like to talk about today?", "Somthing");
 		myBot.contentChecker(conversation);
 		while(myBot.lengthChecker(conversation))
 		{
 			conversation = myBot.processConversation(conversation);
-			conversation = chatView.getResponce(conversation);
+			conversation = chatView.getResponce(conversation, "Something");
 		}
 	}
 	
@@ -60,9 +60,9 @@ public class ChatbotController
 		return responce;
 	}
 	
-	private void shutDown()
+	public void shutDown()
 	{
-		chatView.displayMessage("Goodbye, " + myBot.getUserName() + "it has been my pleasure to talk to you");
+		chatView.displayMessage("Goodbye, " + myBot.getUserName() + " it has been my pleasure to talk to you.");
 		System.exit(0);
 	}
 	

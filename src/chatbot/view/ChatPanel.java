@@ -1,5 +1,6 @@
 package chatbot.view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +20,7 @@ public class ChatPanel extends JPanel
 	private JTextField typingField;
 	private JTextArea chatArea;
 	private JButton enterButton;
+	private JButton quitButton;
 	private boolean firstLine;
 	private String userName;
 	
@@ -29,21 +31,20 @@ public class ChatPanel extends JPanel
 		firstLine = true;
 		
 		baseLayout = new SpringLayout();
-		
 		typingField = new JTextField();
 		typingField.setColumns(10);
-		
 		chatArea = new JTextArea();
-		
 		enterButton = new JButton("Enter");
-		
+		quitButton = new JButton("Quit");
 		
 		setupPanel();
 		setupLayout();
 		setupListeners();
 		
+		changeRandomColor();
+		
 		userName = baseController.getUserName();
-		chatArea.append("Chatbot: Hello " + userName);
+		chatArea.append("  Chatbot: Hello " + userName);
 	}
 	
 	private void setupPanel()
@@ -52,19 +53,23 @@ public class ChatPanel extends JPanel
 		add(typingField);
 		add(enterButton);
 		add(chatArea);
+		add(quitButton);
+		
 	}
 	
 	private void setupLayout()
 	{
 		baseLayout.putConstraint(SpringLayout.SOUTH, enterButton, -8, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, typingField, -6, SpringLayout.WEST, enterButton);
 		baseLayout.putConstraint(SpringLayout.EAST, enterButton, -10, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, typingField, 10, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, typingField, -10, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, -458, SpringLayout.NORTH, typingField);
-		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 0, SpringLayout.WEST, typingField);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatArea, -6, SpringLayout.NORTH, typingField);
-		baseLayout.putConstraint(SpringLayout.EAST, chatArea, 0, SpringLayout.EAST, enterButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, quitButton, 7, SpringLayout.SOUTH, chatArea);
+		baseLayout.putConstraint(SpringLayout.WEST, typingField, 6, SpringLayout.EAST, quitButton);
+		baseLayout.putConstraint(SpringLayout.WEST, quitButton, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, typingField, -6, SpringLayout.WEST, enterButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, typingField, 6, SpringLayout.SOUTH, chatArea);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatArea, -44, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, chatArea, -10, SpringLayout.EAST, this);
 		
 	}
 	
@@ -90,6 +95,24 @@ public class ChatPanel extends JPanel
 			}
 			
 		});
+		quitButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent action)
+			{
+				baseController.shutDown();
+			}
+		});
+	}
+	
+	private void changeRandomColor()
+	{
+		int red, blue, green;
+		red = (int) (Math.random() * 256);
+		blue = (int) (Math.random() * 256);
+		green = (int) (Math.random() * 256);
+		
+		this.setBackground(new Color(red, green, blue));
 	}
 
 	public JComponent getTextField()
