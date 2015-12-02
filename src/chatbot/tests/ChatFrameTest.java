@@ -1,22 +1,22 @@
-package chat.tests;
+package chatbot.tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import chat.view.*;
-import chat.controller.*;
+import chatbot.view.*;
+import chatbot.controller.*;
 
 public class ChatFrameTest
 {
 	private ChatFrame baseFrame;
-	private ChatController baseController;
+	private ChatbotController baseController;
 
 	@Before
 	public void setUp() throws Exception
 	{
-		baseController = new ChatController();
+		baseController = new ChatbotController();
 		baseFrame = new ChatFrame(baseController);
 	}
 

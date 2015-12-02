@@ -53,7 +53,7 @@ public class NotePlayer extends Thread
 		gs.setPitch(JMC.GS3);
 		as.setPitch(JMC.AS3);
 		
-		setNoteSpeed();
+		setNoteSpeed(1000);
 		
 	}
 	
@@ -103,20 +103,20 @@ public class NotePlayer extends Thread
 		
 	}
 	
-	public void setNoteSpeed()
+	public void setNoteSpeed(int num)
 	{
-		c.setDuration(JMC.EIGHTH_NOTE);
-		d.setDuration(JMC.EIGHTH_NOTE);
-		e.setDuration(JMC.EIGHTH_NOTE);
-		f.setDuration(JMC.EIGHTH_NOTE);
-		g.setDuration(JMC.EIGHTH_NOTE);
-		a.setDuration(JMC.EIGHTH_NOTE);
-		b.setDuration(JMC.EIGHTH_NOTE);
-		cs.setDuration(JMC.EIGHTH_NOTE);
-		ds.setDuration(JMC.EIGHTH_NOTE);
-		fs.setDuration(JMC.EIGHTH_NOTE);
-		gs.setDuration(JMC.EIGHTH_NOTE);
-		as.setDuration(JMC.EIGHTH_NOTE);
+		c.setDuration(num);
+		d.setDuration(num);
+		e.setDuration(num);
+		f.setDuration(num);
+		g.setDuration(num);
+		a.setDuration(num);
+		b.setDuration(num);
+		cs.setDuration(num);
+		ds.setDuration(num);
+		fs.setDuration(num);
+		gs.setDuration(num);
+		as.setDuration(num);
 		
 	}
 	

@@ -1,47 +1,129 @@
 package chatbot.controller;
 
 import chatbot.model.*;
-import chatbot.view.ChatbotView;
+import chatbot.view.*;
 
 public class ChatbotController 
 {
 	private NotePlayer note;
 	private Chatbot myBot;
-	private ChatbotView myDisplay;
+
+
+	private ChatView chatView;
+	private ChatFrame baseFrame;
+	private ChatPanel basePanel;
 	private String userName;
 	
 	public ChatbotController()
 	{
 		
-		note = new NotePlayer();
-		note.start();
+//		note = new NotePlayer();
+//		note.start();
 		
-		myDisplay = new ChatbotView();
-		userName = myDisplay.getResponce("Enter Username:");
+		chatView = new ChatView();
+		userName = chatView.getResponce("Whats your name?");
+		
 		myBot = new Chatbot(userName);
+		
+		baseFrame = new ChatFrame(this);
 		
 	}
 	
 	public void start()
 	{
-		myDisplay.displayMessage("Hello " + myBot.getUserName());
-		chat();
+//		chatView.displayMessage("Hello " + myBot.getUserName());
+//		chat();
 	}
 	
 	private void chat()
 	{
-		String conversation = myDisplay.getResponce("What would you like to talk about today?");
+		String conversation = chatView.getResponce("What would you like to talk about today?");
 		myBot.contentChecker(conversation);
 		while(myBot.lengthChecker(conversation))
 		{
 			conversation = myBot.processConversation(conversation);
-			conversation = myDisplay.getResponce(conversation);
+			conversation = chatView.getResponce(conversation);
 		}
+	}
+	
+	public String userToChatbot(String userText)
+	{
+		String responce = "";
+		
+		if(myBot.quitChecker(userText))
+		{
+			shutDown();
+		}
+		
+		responce = myBot.processConversation(userText);
+		
+		return responce;
 	}
 	
 	private void shutDown()
 	{
-		
+		chatView.displayMessage("Goodbye, " + myBot.getUserName() + "it has been my pleasure to talk to you");
+		System.exit(0);
+	}
+	
+	public NotePlayer getNote()
+	{
+		return note;
+	}
+
+	public void setNote(NotePlayer note)
+	{
+		this.note = note;
+	}
+
+	public Chatbot getMyBot()
+	{
+		return myBot;
+	}
+
+	public void setMyBot(Chatbot myBot)
+	{
+		this.myBot = myBot;
+	}
+
+	public ChatView getChatView()
+	{
+		return chatView;
+	}
+
+	public void setChatView(ChatView chatView)
+	{
+		this.chatView = chatView;
+	}
+
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
+	}
+
+	public void setBaseFrame(ChatFrame baseFrame)
+	{
+		this.baseFrame = baseFrame;
+	}
+
+	public ChatPanel getBasePanel()
+	{
+		return basePanel;
+	}
+
+	public void setBasePanel(ChatPanel basePanel)
+	{
+		this.basePanel = basePanel;
+	}
+
+	public String getUserName()
+	{
+		return userName;
+	}
+
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
 	}
 	
 }
