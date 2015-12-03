@@ -17,8 +17,8 @@ public class ChatbotController
 	public ChatbotController()
 	{
 		
-		note = new NotePlayer();
-		note.start();
+//		note = new NotePlayer();
+//		note.start();
 		
 		chatView = new ChatView();
 		userName = chatView.getResponce("Whats your name?", "User");
