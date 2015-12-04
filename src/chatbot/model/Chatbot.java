@@ -17,6 +17,7 @@ public class Chatbot
 	
 	private ArrayList<String> memesList;
 	private ArrayList<String> politicalTopicList;
+	private ArrayList<String> mashList;
 	private String userName;
 	private String content;
 	
@@ -31,12 +32,13 @@ public class Chatbot
 		
 		this.memesList = new ArrayList<String>();
 		this.politicalTopicList = new ArrayList<String>();
+		this.mashList = new ArrayList<String>();
 		this.userName = userName;
 		this.content = "Swoogetty";
 		
 		buildMemesList();
 		buildPoliticalTopicsList();
-		
+		buildMashList();
 	}
 	
 	private void buildMemesList()
@@ -87,8 +89,19 @@ public class Chatbot
 		this.politicalTopicList.add("Marco Rubio");
 		this.politicalTopicList.add("Rick Santorum");
 		this.politicalTopicList.add("Donald Trump");
+		this.politicalTopicList.add("Democrat");
+		this.politicalTopicList.add("Republican");
+		this.politicalTopicList.add("11/4/16");
 		
-	}
+		}
+		
+		private void buildMashList()
+		{
+			this.mashList.add("sdf");
+			this.mashList.add("dfg");
+			this.mashList.add("cvb");
+			this.mashList.add(",./");
+		}
 	
 	/**
 	 * Checks the length of the supplied string. Returns false if the supplied
@@ -179,6 +192,21 @@ public class Chatbot
 		return hasMeme;
 	}
 	
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean hasMash = false;
+		
+		for (String currentMash : mashList)
+		{
+			if (currentInput.toLowerCase().contains(currentMash))
+			{
+				hasMash = true;
+			}
+		}
+		
+		return hasMash;
+	}
+	
 	/**
 	 * Processes Conversation by comparing to our lists and choosing what to say
 	 * back.
@@ -258,6 +286,18 @@ public class Chatbot
 		return returnChat;
 	}
 	
+	public boolean quitChecker(String string)
+	{
+		boolean isQuit = false;
+		
+		if(string.equalsIgnoreCase("quit"))
+		{
+			isQuit = true;
+		}
+		
+		return isQuit;
+	}
+	
 	/**
 	 * Returns the username of this Chatbot instance.
 	 * 
@@ -309,24 +349,5 @@ public class Chatbot
 		this.content = content;
 	}
 
-	public boolean keyboardMashChecker(String string)
-	{
-		boolean isMash = false;
-		
-		
-		
-		return isMash;
-	}
-
-	public boolean quitChecker(String string)
-	{
-		boolean isQuit = false;
-		
-		if(string.equals("exit"))
-		{
-			isQuit = true;
-		}
-		
-		return isQuit;
-	}
+	
 }

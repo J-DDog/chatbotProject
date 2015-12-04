@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JScrollBar;
 
 public class ChatPanel extends JPanel
 {
@@ -21,6 +22,7 @@ public class ChatPanel extends JPanel
 	private JTextArea chatArea;
 	private JButton enterButton;
 	private JButton quitButton;
+	private JScrollBar scrollBar;
 	private boolean firstLine;
 	private String userName;
 	
@@ -33,9 +35,11 @@ public class ChatPanel extends JPanel
 		baseLayout = new SpringLayout();
 		typingField = new JTextField();
 		typingField.setColumns(10);
+		typingField.setToolTipText("type here"); 
 		chatArea = new JTextArea();
 		enterButton = new JButton("Enter");
 		quitButton = new JButton("Quit");
+		scrollBar = new JScrollBar();
 		
 		setupPanel();
 		setupLayout();
@@ -54,6 +58,7 @@ public class ChatPanel extends JPanel
 		add(enterButton);
 		add(chatArea);
 		add(quitButton);
+		add(scrollBar);
 		
 	}
 	
