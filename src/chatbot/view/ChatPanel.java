@@ -32,6 +32,7 @@ public class ChatPanel extends JPanel
 	{
 		this.baseController = baseController;
 		
+		userName = baseController.getUserName();
 		
 		baseLayout = new SpringLayout();
 		typingField = new JTextField();
@@ -53,7 +54,6 @@ public class ChatPanel extends JPanel
 		
 		changeRandomColor();
 		
-		userName = baseController.getUserName();
 	}
 	
 	private void setupPanel()
@@ -68,22 +68,26 @@ public class ChatPanel extends JPanel
 	
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.SOUTH, enterButton, -8, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, enterButton, -10, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, enterButton, -10, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, typingField, 6, SpringLayout.EAST, quitButton);
+		
+		baseLayout.putConstraint(SpringLayout.WEST, typingField, 10, SpringLayout.EAST, quitButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, typingField, 10, SpringLayout.SOUTH, chatArea);
+		baseLayout.putConstraint(SpringLayout.EAST, typingField, -10, SpringLayout.WEST, enterButton);
+		
 		baseLayout.putConstraint(SpringLayout.WEST, quitButton, 10, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, typingField, -6, SpringLayout.WEST, enterButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, quitButton, 10, SpringLayout.SOUTH, chatArea);
+
 		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 10, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, chatArea, -364, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatArea, -192, SpringLayout.NORTH, quitButton);
-		baseLayout.putConstraint(SpringLayout.WEST, scrollPane, 0, SpringLayout.WEST, quitButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, quitButton, 263, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, scrollPane, 10, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, scrollPane, 255, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, scrollPane, -6, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, typingField, 262, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, chatArea, -30, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatArea, -50, SpringLayout.SOUTH, this);
 		
+		baseLayout.putConstraint(SpringLayout.WEST, scrollPane, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, scrollPane, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, scrollPane, -50, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, scrollPane, -10, SpringLayout.EAST, this);
+				
 	}
 	
 	private void setupListeners()
@@ -94,17 +98,12 @@ public class ChatPanel extends JPanel
 			public void actionPerformed(ActionEvent acion)
 			{
 				
-				//Need to do this
-				//Grab user typed answer
-				//display typed answer
-				//send the text to chatbot
+				String userText = typingField.getText(); //Grab user typed answer
+				chatArea.append("\n"+ userName + ": " + userText); //display typed answer
+				typingField.setText(""); 
+				String responce = baseController.userToChatbot(userText); //send the text to chatbot
 				//chatbot will prosses
-				//display the responce
-				String userText = typingField.getText();
-				chatArea.append("\n"+ userName + ": " + userText);
-				typingField.setText("");
-				String responce = baseController.userToChatbot(userText);
-				chatArea.append("\n  Chatbot: " + responce);
+				chatArea.append("\n  Chatbot: " + responce); //display the responce
 				
 
 			}
