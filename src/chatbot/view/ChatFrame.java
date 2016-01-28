@@ -15,6 +15,7 @@ public class ChatFrame extends JFrame
 	{
 		this.baseController = baseController;
 		basePanel = new ChatPanel(baseController);
+		
 		setupFrame();
 	}
 	
