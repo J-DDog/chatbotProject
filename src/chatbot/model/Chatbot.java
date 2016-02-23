@@ -95,13 +95,13 @@ public class Chatbot
 		
 		}
 		
-		private void buildMashList()
-		{
-			this.mashList.add("sdf");
-			this.mashList.add("dfg");
-			this.mashList.add("cvb");
-			this.mashList.add(",./");
-		}
+	private void buildMashList()
+	{
+		this.mashList.add("sdf");
+		this.mashList.add("dfg");
+		this.mashList.add("cvb");
+		this.mashList.add(",./");
+	}
 	
 	/**
 	 * Checks the length of the supplied string. Returns false if the supplied

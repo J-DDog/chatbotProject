@@ -5,9 +5,7 @@ import chatbot.view.*;
 
 public class ChatbotController 
 {
-	private NotePlayer note;
 	private Chatbot myBot;
-
 
 	private ChatView chatView;
 	private ChatFrame baseFrame;
@@ -17,9 +15,6 @@ public class ChatbotController
 	public ChatbotController()
 	{
 		
-//		note = new NotePlayer();
-//		note.start();
-		
 		chatView = new ChatView();
 		userName = chatView.getResponce("Whats your name?", "User");
 		
@@ -27,12 +22,6 @@ public class ChatbotController
 		
 		baseFrame = new ChatFrame(this);
 		
-	}
-	
-	public void start()
-	{
-//		chatView.displayMessage("Hello " + myBot.getUserName());
-//		chat();
 	}
 	
 	private void chat()
@@ -66,16 +55,6 @@ public class ChatbotController
 		System.exit(0);
 	}
 	
-	public NotePlayer getNote()
-	{
-		return note;
-	}
-
-	public void setNote(NotePlayer note)
-	{
-		this.note = note;
-	}
-
 	public Chatbot getMyBot()
 	{
 		return myBot;
