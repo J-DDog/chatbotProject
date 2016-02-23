@@ -42,7 +42,9 @@ public class ChatPanel extends JPanel
 		typingField.setColumns(10);
 		typingField.setToolTipText("Type Here"); 
 		enterButton = new JButton("Enter");
-		quitButton = new JButton("Quit");
+		baseLayout.putConstraint(SpringLayout.WEST, enterButton, 20, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, enterButton, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, typingField, 6, SpringLayout.EAST, enterButton);
 		
 		
 		setupChatPane();		
@@ -61,6 +63,9 @@ public class ChatPanel extends JPanel
 		chatArea.setEditable(false);
 		chatArea.append("  Chatbot: Hello " + userName);
 		scrollPane = new JScrollPane(chatArea);
+		baseLayout.putConstraint(SpringLayout.NORTH, typingField, 10, SpringLayout.SOUTH, scrollPane);
+		baseLayout.putConstraint(SpringLayout.EAST, typingField, 0, SpringLayout.EAST, scrollPane);
+		baseLayout.putConstraint(SpringLayout.WEST, scrollPane, 150, SpringLayout.WEST, this);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	}
@@ -70,24 +75,27 @@ public class ChatPanel extends JPanel
 		this.setLayout(baseLayout);
 		this.add(typingField);
 		this.add(enterButton);
-		this.add(quitButton);
 		this.add(scrollPane);
+		
+		JPanel buttonPanel = new JPanel();
+		baseLayout.putConstraint(SpringLayout.SOUTH, buttonPanel, -10, SpringLayout.NORTH, typingField);
+		baseLayout.putConstraint(SpringLayout.NORTH, buttonPanel, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, buttonPanel, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, buttonPanel, -6, SpringLayout.WEST, scrollPane);
+		add(buttonPanel);
+		buttonPanel.setLayout(new SpringLayout());
+		quitButton = new JButton("Quit");
+		baseLayout.putConstraint(SpringLayout.SOUTH, quitButton, -21, SpringLayout.SOUTH, buttonPanel);
+		baseLayout.putConstraint(SpringLayout.EAST, quitButton, -10, SpringLayout.EAST, buttonPanel);
+		buttonPanel.add(quitButton);
 	}
 	
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.SOUTH, enterButton, -10, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, enterButton, -10, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, typingField, 10, SpringLayout.EAST, quitButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, typingField, 10, SpringLayout.SOUTH, chatArea);
-		baseLayout.putConstraint(SpringLayout.EAST, typingField, -10, SpringLayout.WEST, enterButton);
-		baseLayout.putConstraint(SpringLayout.WEST, quitButton, 10, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, quitButton, 10, SpringLayout.SOUTH, chatArea);
 		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 10, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, chatArea, -30, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatArea, -50, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, scrollPane, 10, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, scrollPane, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, scrollPane, -50, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, scrollPane, -10, SpringLayout.EAST, this);
