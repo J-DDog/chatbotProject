@@ -24,20 +24,20 @@ public class ChatbotController
 		
 	}
 	
-	private void chat()
-	{
-		String conversation = chatView.getResponce("What would you like to talk about today?", "Somthing");
-		myBot.contentChecker(conversation);
-		while(myBot.lengthChecker(conversation))
-		{
-			conversation = myBot.processConversation(conversation);
-			conversation = chatView.getResponce(conversation, "Something");
-		}
-	}
+//	private void chat()
+//	{
+//		String conversation = chatView.getResponce("What would you like to talk about today?", "Somthing");
+//		myBot.contentChecker(conversation);
+//		while(myBot.lengthChecker(conversation))
+//		{
+//			conversation = myBot.processConversation(conversation);
+//			conversation = chatView.getResponce(conversation, "Something");
+//		}
+//	}
 	
 	public String userToChatbot(String userText)
 	{
-		String responce = "";
+		String responce = "ERROR=NoResponceFromChatBot";
 		
 		if(myBot.quitChecker(userText))
 		{
