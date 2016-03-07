@@ -6,6 +6,7 @@ import chatbot.view.*;
 public class ChatbotController 
 {
 	private Chatbot myBot;
+	private CTECTwitter chatbotTwitter;
 	
 	private ChatView chatView;
 	private ChatFrame baseFrame;
@@ -19,6 +20,7 @@ public class ChatbotController
 		userName = chatView.getResponce("Whats your name?", "User");
 		
 		myBot = new Chatbot(userName);
+		chatbotTwitter = new CTECTwitter();
 		
 		baseFrame = new ChatFrame(this);
 		
@@ -53,6 +55,11 @@ public class ChatbotController
 	{
 		chatView.displayMessage("Goodbye, " + myBot.getUserName() + " it has been my pleasure to talk to you.");
 		System.exit(0);
+	}
+	
+	public void sendTweet(String tweetText)
+	{
+		chatbotTwitter.sendTweet(tweetText);
 	}
 	
 	public Chatbot getMyBot()

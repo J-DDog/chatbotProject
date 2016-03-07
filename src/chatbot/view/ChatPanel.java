@@ -136,6 +136,7 @@ public class ChatPanel extends JPanel
 			public void actionPerformed(ActionEvent action)
 			{
 				//ToDo Add Controllers Twitter call
+				baseController.sendTweet("test");
 			}
 		});
 		

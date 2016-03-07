@@ -6,7 +6,7 @@ import twitter4j.*;
 
 /**
  * @author jker3169
- * @version 0.3
+ * @version 0.4
  * 
  * this is the twitter interaction class
  * in this class I use what i've learned about api's to
@@ -14,18 +14,21 @@ import twitter4j.*;
  */
 public class CTECTwitter
 {
+	private Twitter chatbotTwitter;
+	
 	private ArrayList<Status> statusList;
 	private ArrayList<String> wordList;
-	private Twitter chatbotTwitter;
 	
 	public CTECTwitter()
 	{
+		chatbotTwitter = TwitterFactory.getSingleton();
+		
 		statusList = new ArrayList<Status>();
 		wordList = new ArrayList<String>();
 		
 	}
 	
-	public void sendTweet()
+	public void sendTweet(String tweet)
 	{
 		try
 		{
@@ -37,6 +40,7 @@ public class CTECTwitter
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	
 }
