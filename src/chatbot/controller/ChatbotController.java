@@ -6,7 +6,7 @@ import chatbot.view.*;
 public class ChatbotController 
 {
 	private Chatbot myBot;
-
+	
 	private ChatView chatView;
 	private ChatFrame baseFrame;
 	private ChatPanel basePanel;
