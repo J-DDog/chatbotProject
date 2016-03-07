@@ -24,6 +24,7 @@ public class ChatPanel extends JPanel
 {
 	private ChatbotController baseController;
 	private SpringLayout baseLayout;
+	private SpringLayout buttonLayout;
 	private JTextField typingField;
 	private JTextArea chatArea;
 	private JButton enterButton;
@@ -40,16 +41,14 @@ public class ChatPanel extends JPanel
 		this.userName = baseController.getUserName();
 		
 		this.baseLayout = new SpringLayout();
+		this.buttonLayout = new SpringLayout();
 		this.typingField = new JTextField();
 		this.typingField.setColumns(10);
 		this.typingField.setToolTipText("Type Here"); 
 		this.enterButton = new JButton("Enter");
 		this.buttonPanel = new JPanel();
-		this.buttonPanel.setLayout(null);
 		this.quitButton = new JButton("Quit");
-		this.quitButton.setBounds(6, 6, 75, 29);
 		this.twitterButton = new JButton("Tweet");
-		this.twitterButton.setBounds(6, 6, 75, 29);
 
 		
 		
@@ -82,6 +81,7 @@ public class ChatPanel extends JPanel
 		this.add(scrollPane);
 		this.add(buttonPanel);
 		
+		this.buttonPanel.setLayout(buttonLayout);
 		this.buttonPanel.add(quitButton);
 		this.buttonPanel.add(twitterButton);
 	}
@@ -105,6 +105,11 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, typingField, 0, SpringLayout.EAST, scrollPane);
 		baseLayout.putConstraint(SpringLayout.WEST, scrollPane, 150, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, enterButton, 20, SpringLayout.WEST, this);
+		
+		buttonLayout.putConstraint(SpringLayout.NORTH, quitButton, 10, SpringLayout.NORTH, buttonPanel);
+		buttonLayout.putConstraint(SpringLayout.WEST, quitButton, 10, SpringLayout.WEST, buttonPanel);
+		buttonLayout.putConstraint(SpringLayout.NORTH, twitterButton, 10, SpringLayout.SOUTH, quitButton);
+		buttonLayout.putConstraint(SpringLayout.WEST, twitterButton, 10, SpringLayout.WEST, buttonPanel);
 		
 	}
 	
@@ -136,7 +141,7 @@ public class ChatPanel extends JPanel
 			public void actionPerformed(ActionEvent action)
 			{
 				//ToDo Add Controllers Twitter call
-				baseController.sendTweet("test");
+				baseController.sendTweet("no text to send");
 			}
 		});
 		

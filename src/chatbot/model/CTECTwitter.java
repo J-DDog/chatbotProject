@@ -2,11 +2,12 @@ package chatbot.model;
 
 import java.util.ArrayList;
 
+import chatbot.controller.ChatbotController;
 import twitter4j.*;
 
 /**
  * @author jker3169
- * @version 0.4
+ * @version 0.5
  * 
  * this is the twitter interaction class
  * in this class I use what i've learned about api's to
@@ -14,18 +15,19 @@ import twitter4j.*;
  */
 public class CTECTwitter
 {
+	private ChatbotController baseController;
 	private Twitter chatbotTwitter;
 	
 	private ArrayList<Status> statusList;
 	private ArrayList<String> wordList;
 	
-	public CTECTwitter()
+	public CTECTwitter(ChatbotController baseController)
 	{
+		this.baseController = baseController;
 		chatbotTwitter = TwitterFactory.getSingleton();
 		
 		statusList = new ArrayList<Status>();
 		wordList = new ArrayList<String>();
-		
 	}
 	
 	public void sendTweet(String tweet)
@@ -35,10 +37,9 @@ public class CTECTwitter
 			chatbotTwitter.updateStatus("I just tweeted from my Java Chatbot program!"
 					+ " #APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen!");
 		}
-		catch (TwitterException e)
+		catch (TwitterException error)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			baseController.handleError(error.getErrorMessage());
 		}
 		
 	}

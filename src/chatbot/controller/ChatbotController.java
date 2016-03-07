@@ -20,7 +20,7 @@ public class ChatbotController
 		userName = chatView.getResponce("Whats your name?", "User");
 		
 		myBot = new Chatbot(userName);
-		chatbotTwitter = new CTECTwitter();
+		chatbotTwitter = new CTECTwitter(this);
 		
 		baseFrame = new ChatFrame(this);
 		
@@ -60,6 +60,11 @@ public class ChatbotController
 	public void sendTweet(String tweetText)
 	{
 		chatbotTwitter.sendTweet(tweetText);
+	}
+	
+	public void handleError(String errorMessage)
+	{
+		chatView.displayMessage(errorMessage);
 	}
 	
 	public Chatbot getMyBot()
