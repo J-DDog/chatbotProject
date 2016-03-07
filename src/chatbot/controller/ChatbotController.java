@@ -6,7 +6,8 @@ import chatbot.view.*;
 public class ChatbotController 
 {
 	private Chatbot myBot;
-
+	private CTECTwitter chatbotTwitter;
+	
 	private ChatView chatView;
 	private ChatFrame baseFrame;
 	private ChatPanel basePanel;
@@ -19,25 +20,26 @@ public class ChatbotController
 		userName = chatView.getResponce("Whats your name?", "User");
 		
 		myBot = new Chatbot(userName);
+		chatbotTwitter = new CTECTwitter();
 		
 		baseFrame = new ChatFrame(this);
 		
 	}
 	
-	private void chat()
-	{
-		String conversation = chatView.getResponce("What would you like to talk about today?", "Somthing");
-		myBot.contentChecker(conversation);
-		while(myBot.lengthChecker(conversation))
-		{
-			conversation = myBot.processConversation(conversation);
-			conversation = chatView.getResponce(conversation, "Something");
-		}
-	}
+//	private void chat()
+//	{
+//		String conversation = chatView.getResponce("What would you like to talk about today?", "Somthing");
+//		myBot.contentChecker(conversation);
+//		while(myBot.lengthChecker(conversation))
+//		{
+//			conversation = myBot.processConversation(conversation);
+//			conversation = chatView.getResponce(conversation, "Something");
+//		}
+//	}
 	
 	public String userToChatbot(String userText)
 	{
-		String responce = "";
+		String responce = "ERROR=NoResponceFromChatBot";
 		
 		if(myBot.quitChecker(userText))
 		{
@@ -53,6 +55,11 @@ public class ChatbotController
 	{
 		chatView.displayMessage("Goodbye, " + myBot.getUserName() + " it has been my pleasure to talk to you.");
 		System.exit(0);
+	}
+	
+	public void sendTweet(String tweetText)
+	{
+		chatbotTwitter.sendTweet(tweetText);
 	}
 	
 	public Chatbot getMyBot()
