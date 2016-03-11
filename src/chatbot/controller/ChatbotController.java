@@ -62,6 +62,12 @@ public class ChatbotController
 		chatbotTwitter.sendTweet(tweetText);
 	}
 	
+	public String analyze(String userName)
+	{
+		
+		return "";
+	}
+	
 	public void handleError(String errorMessage)
 	{
 		chatView.displayMessage(errorMessage);

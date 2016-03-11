@@ -29,6 +29,7 @@ public class ChatPanel extends JPanel
 	private JTextArea chatArea;
 	private JButton enterButton;
 	private JButton quitButton;
+	private JButton analyzeTwitterButton;
 	private JButton twitterButton;
 	private JScrollPane scrollPane;
 	private String userName;
@@ -49,6 +50,7 @@ public class ChatPanel extends JPanel
 		this.buttonPanel = new JPanel();
 		this.quitButton = new JButton("Quit");
 		this.twitterButton = new JButton("Tweet");
+		this.analyzeTwitterButton = new JButton("Analyze Tweet");
 
 		
 		
@@ -84,6 +86,7 @@ public class ChatPanel extends JPanel
 		this.buttonPanel.setLayout(buttonLayout);
 		this.buttonPanel.add(quitButton);
 		this.buttonPanel.add(twitterButton);
+		this.buttonPanel.add(analyzeTwitterButton);
 	}
 	
 	private void setupLayout()
@@ -107,10 +110,11 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, enterButton, 20, SpringLayout.WEST, this);
 		
 		buttonLayout.putConstraint(SpringLayout.NORTH, quitButton, 10, SpringLayout.NORTH, buttonPanel);
-		buttonLayout.putConstraint(SpringLayout.WEST, quitButton, 10, SpringLayout.WEST, buttonPanel);
+		buttonLayout.putConstraint(SpringLayout.WEST, quitButton, 5, SpringLayout.WEST, buttonPanel);
 		buttonLayout.putConstraint(SpringLayout.NORTH, twitterButton, 10, SpringLayout.SOUTH, quitButton);
-		buttonLayout.putConstraint(SpringLayout.WEST, twitterButton, 10, SpringLayout.WEST, buttonPanel);
-		
+		buttonLayout.putConstraint(SpringLayout.WEST, twitterButton, 5, SpringLayout.WEST, buttonPanel);
+		buttonLayout.putConstraint(SpringLayout.NORTH, analyzeTwitterButton, 10, SpringLayout.SOUTH, twitterButton);
+		buttonLayout.putConstraint(SpringLayout.WEST, analyzeTwitterButton, 5, SpringLayout.WEST, buttonPanel);
 	}
 	
 	private void setupListeners()
@@ -143,6 +147,19 @@ public class ChatPanel extends JPanel
 				//ToDo Add Controllers Twitter call
 				baseController.sendTweet("no text to send");
 			}
+		});
+		
+		analyzeTwitterButton.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				String user = typingField.getText();
+				String results = baseController.analyze(user);
+				chatArea.append("\n  Chatbot: " + results);
+			}
+			
 		});
 		
 		typingField.addKeyListener(new KeyListener()

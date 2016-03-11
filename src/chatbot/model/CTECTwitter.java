@@ -1,10 +1,10 @@
 package chatbot.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import chatbot.controller.ChatbotController;
 import twitter4j.*;
-import twitter4j.conf.ConfigurationBuilder;
 
 /**
  * @author jker3169
@@ -19,7 +19,7 @@ public class CTECTwitter
 	private ChatbotController baseController;	
 	private Twitter chatbotTwitter;
 	
-	private ArrayList<Status> statusList;
+	private ArrayList<Status> statuses;
 	private ArrayList<String> wordList;
 	
 	public CTECTwitter(ChatbotController baseController)
@@ -27,7 +27,7 @@ public class CTECTwitter
 		this.baseController = baseController;
 		chatbotTwitter = TwitterFactory.getSingleton();
 		
-		statusList = new ArrayList<Status>();
+		statuses = new ArrayList<Status>();
 		wordList = new ArrayList<String>();
 		
 		
@@ -46,6 +46,46 @@ public class CTECTwitter
 			baseController.handleError(error.getErrorMessage());
 		}
 		
+	}
+	
+	public void loadTweets(String twitterHandle) throws TwitterException
+	{
+		Paging statusPage = new Paging(1, 200);
+		int page = 1;
+		while(page <= 10)
+		{
+			statusPage.setPage(page);
+			statuses.addAll(chatbotTwitter.getUserTimeline(twitterHandle, statusPage));
+			page++;
+		}
+		for(Status currentStatus: statuses)
+		{
+			String[] tweetText = currentStatus.getText().split(" ");
+			for(String word: tweetText)
+			{
+				wordList.add(removePunctuation(word).toLowerCase());
+			}
+		}
+		removeCommonEnglishWords(wordList);
+		removeEmptyText();
+	}
+
+	private void removeEmptyText()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	private List removeCommonEnglishWords(ArrayList<String> wordList)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private String removePunctuation(String word)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
