@@ -84,8 +84,20 @@ public class CTECTwitter
 
 	private String removePunctuation(String word)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		//Declare what to remove from the words
+		String punctuation = ".,'?!:;\"(){}^[]<>-";
+		
+		//Create the scrubbed word and begin the loop
+		String scrubbedString = "";
+		for(int i = 0; i < word.length(); i++)//For every char in word
+		{
+			if(punctuation.indexOf(word.charAt(i)) == -1)//If the char is not in the list of chars to be removed
+			{
+				scrubbedString += word.charAt(i);//Add any good characters
+			}
+			
+		}
+		return scrubbedString;//Return the scrubbed word
 	}
 	
 }
