@@ -72,14 +72,31 @@ public class CTECTwitter
 
 	private void removeEmptyText()
 	{
-		// TODO Auto-generated method stub
-		
+		for(int spot = 0; spot < wordList.size(); spot++)
+		{
+			if(wordList.get(spot).equals(""))
+			{
+				wordList.remove(spot);
+				spot--;
+			}
+		}
 	}
 
 	private List removeCommonEnglishWords(ArrayList<String> wordList)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String[] boringWords = importWordsToArray();
+		
+		for(int count = 0; count < wordList.size(); count++)
+		{
+			for(int removeSpot = 0; removeSpot < boringWords.length; removeSpot++)
+			{
+				wordList.remove(count);
+				count--;
+				removeSpot = boringWords.length;
+			}
+		}
+//		removewitterUsernamesFromList(wordList);
+		return wordList;
 	}
 
 	private String removePunctuation(String word)
