@@ -132,7 +132,7 @@ public class CTECTwitter
 		
 	}
 	
-	public String topResults(List<String> wordList)
+	public String topResults()
 	{
 		String tweetResults = "";
 		
@@ -157,7 +157,7 @@ public class CTECTwitter
 			}
 		}
 		
-		tweetResults = "The top word in the tweets was" + wordList.get(topWordLocation) + " and it was used " + topCount + " times!";
+		tweetResults = "The top word in the tweets was " + wordList.get(topWordLocation) + " and it was used " + topCount + " times!";
 		return tweetResults;
 	}
 

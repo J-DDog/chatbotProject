@@ -1,5 +1,6 @@
 package chatbot.controller;
 
+import twitter4j.TwitterException;
 import chatbot.model.*;
 import chatbot.view.*;
 
@@ -64,8 +65,18 @@ public class ChatbotController
 	
 	public String analyze(String userName)
 	{
+		try
+		{
+			chatbotTwitter.loadTweets(userName);
+		}
+		catch (TwitterException e)
+		{
+			return "Error - twitter load failed";
+		}
 		
-		return "";
+		String userAnalysis = "The Twitter user " + userName + " has " + chatbotTwitter.topResults() + " Tweets.";
+		userAnalysis = chatbotTwitter.topResults();
+		return userAnalysis;
 	}
 	
 	public void handleError(String errorMessage)
