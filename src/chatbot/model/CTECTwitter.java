@@ -92,17 +92,19 @@ public class CTECTwitter
 	private List removeCommonEnglishWords(ArrayList<String> wordList)
 	{
 		String[] boringWords = importWordsToArray();
-		
-		for(int count = 0; count < wordList.size(); count++)
+		int count = 0;
+		while(count < wordList.size())
 		{
 			for(int removeSpot = 0; removeSpot < boringWords.length; removeSpot++)
 			{
-				if(wordList.get(count).contains(boringWords[removeSpot]))
+				if(wordList.get(count).equals(boringWords[removeSpot]))
 				{
 					wordList.remove(count);
 					removeSpot = 0;
 				}
+				
 			}
+			count++;
 		}
 //		removewitterUsernamesFromList(wordList);
 		return wordList;
