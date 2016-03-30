@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import chatbot.controller.ChatbotController;
+import chatbot.controller.FileIoController;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -31,16 +32,18 @@ public class ChatPanel extends JPanel
 	private JButton quitButton;
 	private JButton analyzeTwitterButton;
 	private JButton twitterButton;
+	private JButton saveButton;
+	private JButton loadButton;
 	private JScrollPane scrollPane;
 	private String userName;
 	private JPanel buttonPanel;
 	
 	public ChatPanel(ChatbotController baseController)
 	{
+		//Initialization Section
 		this.baseController = baseController;
 		
 		this.userName = baseController.getUserName();
-		
 		this.baseLayout = new SpringLayout();
 		this.buttonLayout = new SpringLayout();
 		this.typingField = new JTextField();
@@ -50,10 +53,12 @@ public class ChatPanel extends JPanel
 		this.buttonPanel = new JPanel();
 		this.quitButton = new JButton("Quit");
 		this.twitterButton = new JButton("Tweet");
+		this.saveButton = new JButton("Save");
+		this.loadButton = new JButton("Load");
 		this.analyzeTwitterButton = new JButton("Analyze Tweet");
 
 		
-		
+		//Calling helper methods
 		setupChatPane();		
 		setupPanel();
 		setupLayout();
@@ -64,6 +69,7 @@ public class ChatPanel extends JPanel
 	
 	private void setupChatPane()
 	{
+		//setting up the pane
 		chatArea = new JTextArea();
 		chatArea.setLineWrap(true);
 		chatArea.setWrapStyleWord(true);
@@ -77,6 +83,7 @@ public class ChatPanel extends JPanel
 
 	private void setupPanel()
 	{
+		//adding objects to the panel
 		this.setLayout(baseLayout);
 		this.add(typingField);
 		this.add(enterButton);
@@ -87,10 +94,13 @@ public class ChatPanel extends JPanel
 		this.buttonPanel.add(quitButton);
 		this.buttonPanel.add(twitterButton);
 		this.buttonPanel.add(analyzeTwitterButton);
+		this.buttonPanel.add(saveButton);
+		this.buttonPanel.add(loadButton);
 	}
 	
 	private void setupLayout()
 	{
+		//Setting up the layout
 		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 10, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, chatArea, -30, SpringLayout.EAST, this);
@@ -109,6 +119,10 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, scrollPane, 150, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, enterButton, 20, SpringLayout.WEST, this);
 		
+		buttonLayout.putConstraint(SpringLayout.NORTH, saveButton, 10, SpringLayout.SOUTH, analyzeTwitterButton);
+		buttonLayout.putConstraint(SpringLayout.NORTH, loadButton, 10, SpringLayout.SOUTH, saveButton);
+		buttonLayout.putConstraint(SpringLayout.WEST, loadButton, 5, SpringLayout.WEST, buttonPanel);
+		buttonLayout.putConstraint(SpringLayout.WEST, saveButton, 5, SpringLayout.WEST, buttonPanel);
 		buttonLayout.putConstraint(SpringLayout.NORTH, quitButton, 10, SpringLayout.NORTH, buttonPanel);
 		buttonLayout.putConstraint(SpringLayout.WEST, quitButton, 5, SpringLayout.WEST, buttonPanel);
 		buttonLayout.putConstraint(SpringLayout.NORTH, twitterButton, 10, SpringLayout.SOUTH, quitButton);
@@ -156,8 +170,17 @@ public class ChatPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				String user = typingField.getText();
-				String results = baseController.analyze(user);
+				String results;
+				if(user.equals(""))
+				{
+					results = baseController.investicaion();
+				}
+				else
+				{
+					results = baseController.analyze(user);
+				}
 				chatArea.append("\n  Chatbot: " + results);
+				
 			}
 			
 		});
@@ -189,6 +212,31 @@ public class ChatPanel extends JPanel
 					enterPressed();
 				}
 				
+			}
+			
+		});
+		
+		saveButton.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				String file = FileIoController.saveFile(chatArea.getText());
+				
+				
+			}
+			
+		});
+		
+		loadButton.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				String loadedText = FileIoController.readTextFromFile(typingField.getText());
+				chatArea.setText(loadedText);
 			}
 			
 		});

@@ -133,5 +133,10 @@ public class ChatbotController
 	{
 		this.userName = userName;
 	}
+
+	public String investicaion()
+	{
+		return chatbotTwitter.sampleInvestigation();
+	}
 	
 }

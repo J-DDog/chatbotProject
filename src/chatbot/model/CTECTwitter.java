@@ -92,15 +92,20 @@ public class CTECTwitter
 	private List removeCommonEnglishWords(ArrayList<String> wordList)
 	{
 		String[] boringWords = importWordsToArray();
+		String boringWord = "";
+		String checkWord = "";
 		int count = 0;
 		while(count < wordList.size())
 		{
+			checkWord = wordList.get(count);
 			for(int removeSpot = 0; removeSpot < boringWords.length; removeSpot++)
 			{
+				boringWord = boringWords[removeSpot];
 				if(wordList.get(count).equals(boringWords[removeSpot]))
 				{
 					wordList.remove(count);
 					removeSpot = 0;
+					checkWord = wordList.get(count);
 				}
 				
 			}
@@ -181,5 +186,31 @@ public class CTECTwitter
 		}
 		return scrubbedString;//Return the scrubbed word
 	}
+	
+	public String sampleInvestigation()
+	{
+		String results = "";
+		
+		Query query = new Query("snow");
+		query.setCount(100);
+		query.setGeoCode(new GeoLocation(40.587521, -111.869178), 5, Query.MILES);
+		query.setSince("2016-1-1");
+		try
+		{
+			QueryResult result = chatbotTwitter.search(query);
+			results += "Count : " + result.getTweets().size() + "\n";
+			for (Status tweet: result.getTweets())
+			{
+				results += "@" + tweet.getUser().getName() + ": " + tweet.getText() + "\n";
+			}
+		}
+		catch (TwitterException error)
+		{
+			error.printStackTrace();
+		}
+		
+		return results;
+	}
+	
 	
 }
